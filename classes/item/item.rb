@@ -11,7 +11,15 @@ class Item
     end
 
     def can_be_archived?
-        Date.today.year - @publish_date.year > 10
+        if Date.today.year - @publish_date.year == 10
+            if Date.today.month >= @publish_date.month
+                if Date.today.day > @publish_date.day
+                    true
+                end
+            end
+        else
+            Date.today.year - @publish_date.year > 10
+        end
     end
 
     def move_to_archive

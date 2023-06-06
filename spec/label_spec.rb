@@ -3,13 +3,22 @@
 require_relative '../classes/label'
 
 describe Label do
-  label = Label.new('label_name')
-  it 'has a name' do
-    expect(label.name).to eq('label_name')
+  label = Label.new('label_title', 'label_color')
+  it 'has a title' do
+    expect(label.title).to eq('label_title')
   end
-  it 'can change the name' do
-    label.name = 'new_label_name'
-    expect(label.name).to eq('new_label_name')
+  it 'can change the title' do
+    label.title = 'new_label_title'
+    expect(label.title).to eq('new_label_title')
+  end
+
+  it 'has a color' do
+    expect(label.color).to eq('label_color')
+  end
+
+  it 'can change the color' do
+    label.color = 'new_label_color'
+    expect(label.color).to eq('new_label_color')
   end
 
   it 'has an empty array of items' do

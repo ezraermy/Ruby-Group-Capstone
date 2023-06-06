@@ -37,23 +37,32 @@ class Menu
     handle_choice(MAIN_OPTIONS, choice)
   end
 
+  def invalid_choice
+    @app.clear_screen
+    puts 'Invalid choice, please try again.'
+    gets
+  end
+
+  def invalid_choice_manager(options)
+    case options
+    when MAIN_OPTIONS
+      100
+    when BOOKS_OPTIONS
+      books_menu
+    when MUSIC_OPTIONS
+      music_menu
+    when GAMES_OPTIONS
+      games_menu
+    end
+  end
+
   def handle_choice(options, choice)
     if options.key?(choice)
       send(options[choice])
       choice
     else
-      @app.clear_screen
-      puts 'Invalid choice, please try again.'
-      gets
-      if options == MAIN_OPTIONS
-        100
-      elsif options == BOOKS_OPTIONS
-       books_menu
-      elsif options == MUSIC_OPTIONS
-        music_menu
-      elsif options == GAMES_OPTIONS
-        games_menu
-      end
+      invalid_choice
+      invalid_choice_manager(options)
     end
   end
 

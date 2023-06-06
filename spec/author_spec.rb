@@ -1,25 +1,24 @@
-require './author'
+require_relative '../author'
 
-describe Author
+describe Author do
+  let(:id) { 4 }
+  let(:first_name) { 'Kennedy' }
+  let(:last_name) { 'Wattson' }
+  let(:items) { [] }
+  let(:author) { Author.new(id, first_name, last_name) }
 
-let(:id) { 4 }
-let(:first_name) { 'Kennedy' }
-let(:last_name) { 'Wattson' }
-let(:items) { [] }
-let(:author) { Author.new(first_name, last_name)}
-
-it 'checks if the author is an istance of the class' do
+  it 'checks if the author is an instance of the class' do
     expect(author).to be_an_instance_of(Author)
-end
+  end
 
-it 'checks if the id is right' do
+  it 'checks if the id is correct' do
     expect(author.id).to eql(4)
-end
+  end
 
-describe '#add_item' do
-it 'adds the new item to the items array' do
-    author.add_item('Item 1')
-    expect(items.length).to eql(1)
-end
-end
+  describe '#add_item' do
+    it 'adds the new item to the items array' do
+      author.add_item('Item 1')
+      expect(author.items.length).to eql(1)
+    end
+  end
 end

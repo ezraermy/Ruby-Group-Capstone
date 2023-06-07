@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'json'
 require_relative 'classes/item/item.rb'
 require_relative 'classes/item/music_album.rb'
 require_relative 'classes/genre.rb'

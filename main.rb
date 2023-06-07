@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative 'modules/menu'
 require_relative 'app'
 require_relative 'modules/album_data'

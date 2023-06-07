@@ -1,4 +1,4 @@
-require_relative '../classes/genre.rb'
+require_relative '../classes/genre'
 require 'rspec'
 
 RSpec.describe Genre do
@@ -13,4 +13,3 @@ RSpec.describe Genre do
     end
   end
 end
-

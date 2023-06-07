@@ -1,5 +1,5 @@
 require 'date'
-require_relative '../classes/item/music_album.rb'
+require_relative '../classes/item/music_album'
 
 describe MusicAlbum do
   let(:publish_date) { Date.parse('2023-01-01') }
@@ -24,6 +24,5 @@ describe MusicAlbum do
     expect(album.can_be_archived?).to eq false
     expect(album2.can_be_archived?).to eq true
     expect(album3.can_be_archived?).to eq false
-  end 
-  
+  end
 end

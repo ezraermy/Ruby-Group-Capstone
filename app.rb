@@ -6,6 +6,7 @@ require_relative 'classes/game'
 require_relative 'classes/item/author'
 
 class App
+  
   attr_reader :books, :music_albums, :games
 
   def initialize

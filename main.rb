@@ -16,7 +16,7 @@ def main
   # app.save_data
   puts 'Exiting the app, goodbye!'
   gets
-  app.clear_screen
+  menu.clear_screen
 end
 
 main

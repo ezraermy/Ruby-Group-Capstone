@@ -1,10 +1,10 @@
-require 'securerandom'
+require 'date'
 
 class Item
     attr_accessor :genre, :author, :label, :publish_date, :archived
     attr_reader :id
     def initialize(publish_date)
-        @id = SecureRandom.uuid
+        @id = Random.rand(1..1000)
         @genre = genre
         @author = author
         @label = label

@@ -2,6 +2,20 @@
 
 require_relative '../classes/label'
 
+class Item
+  attr_accessor :genre, :author, :label, :publish_date
+  attr_reader :id, :archived
+
+  def initialize(publish_date)
+    @id = rand(0..10_000)
+    @genre = genre
+    @author = author
+    @label = label
+    @publish_date = publish_date
+    @archived = false
+  end
+end
+
 describe Label do
   label = Label.new('label_title', 'label_color')
   it 'has a title' do
@@ -25,10 +39,9 @@ describe Label do
     expect(label.items).to eq([])
   end
 
-  it 'has 3 objects in the item array' do
-    label.add_item('item1')
-    label.add_item('item2')
-    label.add_item('item3')
-    expect(label.items).to eq(%w[item1 item2 item3])
+  it 'has 1 objects in the item array with label variable = label' do
+    item = Item.new(Date.new(2010, 1, 1))
+    label.add_item(item)
+    expect(label.items[0].label).to eq(label)
   end
 end

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative '../classes/item/book'
 
 book1 = Book.new('publisher', 'good', Date.new(2013, 10, 1))

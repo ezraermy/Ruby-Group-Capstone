@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class Menu
   def initialize(app)
     @app = app
@@ -12,8 +11,9 @@ class Menu
   }.freeze
   BOOKS_OPTIONS = {
     1 => :list_of_books,
-    2 => :add_book,
-    3 => :main_menu
+    2 => :list_of_labels,
+    3 => :add_book,
+    4 => :main_menu
   }.freeze
   MUSIC_OPTIONS = {
     1 => :list_of_music_albums,
@@ -27,7 +27,7 @@ class Menu
     3 => :main_menu
   }.freeze
 
-#---------------------------
+  #---------------------------
   def list_of_music_albums
     @app.list_music_albums
     gets
@@ -45,7 +45,7 @@ class Menu
     gets
     music_menu
   end
-#---------------------------
+  #---------------------------
 
   def display_menu_options
     clear_screen
@@ -65,13 +65,14 @@ class Menu
       clear_screen
       puts 'Invalid choice, please try again.'
       gets
-      if options == MAIN_OPTIONS
+      case options
+      when MAIN_OPTIONS
         100
-      elsif options == BOOKS_OPTIONS
-       books_menu
-      elsif options == MUSIC_OPTIONS
+      when BOOKS_OPTIONS
+        books_menu
+      when MUSIC_OPTIONS
         music_menu
-      elsif options == GAMES_OPTIONS
+      when GAMES_OPTIONS
         games_menu
       end
     end
@@ -102,8 +103,9 @@ class Menu
     puts 'Books Menu'
     puts 'Please select an option:'
     puts '1: List all books'
-    puts '2: Add a book'
-    puts '3: Main Menu'
+    puts '2: List all labels'
+    puts '3: Add a book'
+    puts '4: Main Menu'
     handle_choice(BOOKS_OPTIONS, gets.chomp.to_i)
   end
 
@@ -128,10 +130,27 @@ class Menu
     handle_choice(GAMES_OPTIONS, gets.chomp.to_i)
   end
 
-  def books_list
+  #---------------------------
+  def list_of_books
     clear_screen
+    @app.list_all_books
+    books_menu
   end
 
+  def list_of_labels
+    clear_screen
+    @app.list_all_labels
+    gets
+    books_menu
+  end
+
+  def add_book
+    clear_screen
+    @app.add_book
+    books_menu
+  end
+
+  #---------------------------
   def music_list
     clear_screen
   end

@@ -1,6 +1,6 @@
 require 'securerandom'
 
-class Genre 
+class Genre
   attr_accessor :name, :items
   attr_reader :id
 

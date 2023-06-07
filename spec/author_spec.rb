@@ -1,11 +1,11 @@
-require_relative '../classes/item/author.rb'
-require_relative '../classes/item/item.rb'
+require_relative '../classes/item/author'
+require_relative '../classes/item/item'
 
 describe Author do
   let(:first_name) { 'Kennedy' }
   let(:last_name) { 'Wattson' }
   let(:author) { Author.new(first_name, last_name) }
-  let(:item) { Item.new('2022-02-12')}
+  let(:item) { Item.new('2022-02-12') }
 
   it 'checks if the author is an instance of the class' do
     expect(author).to be_an_instance_of(Author)

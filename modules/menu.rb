@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class Menu
   def initialize(app)
     @app = app
@@ -18,8 +17,9 @@ class Menu
   }.freeze
   MUSIC_OPTIONS = {
     1 => :list_of_music_albums,
-    2 => :add_music_album,
-    3 => :main_menu
+    2 => :list_of_genres,
+    3 => :add_music_album,
+    4 => :main_menu
   }.freeze
   GAMES_OPTIONS = {
     1 => :list_of_games,
@@ -27,8 +27,28 @@ class Menu
     3 => :main_menu
   }.freeze
 
+#---------------------------
+  def list_of_music_albums
+    @app.list_music_albums
+    gets
+    music_menu
+  end
+
+  def list_of_genres
+    @app.list_genres
+    gets
+    music_menu
+  end
+
+  def add_music_album
+    @app.add_music_album
+    gets
+    music_menu
+  end
+#---------------------------
+
   def display_menu_options
-    @app.clear_screen
+    clear_screen
     puts 'Please selelct an option:'
     MAIN_OPTIONS.each do |key, value|
       puts "#{key}: #{menu_option_name(value)}"
@@ -37,33 +57,34 @@ class Menu
     handle_choice(MAIN_OPTIONS, choice)
   end
 
-  def invalid_choice
-    @app.clear_screen
-    puts 'Invalid choice, please try again.'
-    gets
-  end
-
-  def invalid_choice_manager(options)
-    case options
-    when MAIN_OPTIONS
-      100
-    when BOOKS_OPTIONS
-      books_menu
-    when MUSIC_OPTIONS
-      music_menu
-    when GAMES_OPTIONS
-      games_menu
-    end
-  end
-
   def handle_choice(options, choice)
     if options.key?(choice)
       send(options[choice])
       choice
     else
-      invalid_choice
-      invalid_choice_manager(options)
+      clear_screen
+      puts 'Invalid choice, please try again.'
+      gets
+      if options == MAIN_OPTIONS
+        100
+      elsif options == BOOKS_OPTIONS
+       books_menu
+      elsif options == MUSIC_OPTIONS
+        music_menu
+      elsif options == GAMES_OPTIONS
+        games_menu
+      end
     end
+  end
+
+  def clear_screen
+    system('cls')
+    system('clear')
+  end
+
+  def exit_app
+    clear_screen
+    0
   end
 
   private
@@ -77,7 +98,7 @@ class Menu
   end
 
   def books_menu
-    @app.clear_screen
+    clear_screen
     puts 'Books Menu'
     puts 'Please select an option:'
     puts '1: List all books'
@@ -87,17 +108,18 @@ class Menu
   end
 
   def music_menu
-    @app.clear_screen
+    clear_screen
     puts 'Music Menu'
     puts 'Please select an option:'
     puts '1: List all albums'
-    puts '2: Add an album'
-    puts '3: Main Menu'
+    puts '2: List all genres'
+    puts '3: Add an album'
+    puts '4: Main Menu'
     handle_choice(MUSIC_OPTIONS, gets.chomp.to_i)
   end
 
   def games_menu
-    @app.clear_screen
+    clear_screen
     puts 'Games Menu'
     puts 'Please select an option:'
     puts '1: List all games'
@@ -106,8 +128,15 @@ class Menu
     handle_choice(GAMES_OPTIONS, gets.chomp.to_i)
   end
 
-  def exit_app
-    @app.clear_screen
-    0
+  def books_list
+    clear_screen
+  end
+
+  def music_list
+    clear_screen
+  end
+
+  def games_list
+    clear_screen
   end
 end

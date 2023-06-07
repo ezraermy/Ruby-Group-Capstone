@@ -1,4 +1,4 @@
-require_relative 'classes/item/item'
+require_relative '../classes/item/item.rb'
 require 'date'
 
 class Game < Item 

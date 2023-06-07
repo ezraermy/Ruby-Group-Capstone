@@ -1,23 +1,23 @@
 require_relative '../author'
+require_relative '../classes/item/item.rb'
 
 describe Author do
-  let(:id) { 4 }
   let(:first_name) { 'Kennedy' }
   let(:last_name) { 'Wattson' }
-  let(:items) { [] }
-  let(:author) { Author.new(id, first_name, last_name) }
+  let(:author) { Author.new(first_name, last_name) }
+  let(:item) { Item.new('2022-02-12')}
 
   it 'checks if the author is an instance of the class' do
     expect(author).to be_an_instance_of(Author)
   end
 
-  it 'checks if the id is correct' do
-    expect(author.id).to eql(4)
+  it 'checks if the first_name is correct' do
+    expect(author.first_name).to eql('Kennedy')
   end
 
   describe '#add_item' do
     it 'adds the new item to the items array' do
-      author.add_item('Item 1')
+      author.add_item(item)
       expect(author.items.length).to eql(1)
     end
   end

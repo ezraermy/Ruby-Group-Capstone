@@ -47,6 +47,27 @@ class Menu
   end
 #---------------------------
 
+#-------------------------------------------------------
+# Games SECTION
+def list_of_games
+  @app.list_games
+  gets
+  games_menu
+end
+
+def list_of_authors
+  @app.list_authors
+  gets
+  games_menu
+end
+
+def add_game
+  @app.add_game
+  gets
+  games_menu
+end
+#-----------------------------------------------------------------------
+
   def display_menu_options
     clear_screen
     puts 'Please selelct an option:'

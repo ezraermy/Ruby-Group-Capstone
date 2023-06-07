@@ -2,6 +2,8 @@
 require_relative 'classes/item/item.rb'
 require_relative 'classes/item/music_album.rb'
 require_relative 'classes/genre.rb'
+require_relative 'classes/game'
+require_relative 'classes/item/author'
 
 class App
   attr_reader :books, :music_albums, :games
@@ -11,6 +13,7 @@ class App
     @music_albums = []
     @games = []
     @genres = []
+    @authors = []
   end
 
   def list_music_albums
@@ -56,7 +59,39 @@ class App
     puts "Music album added successfully!"
   end
 
-  private
+  def list_games
+    puts "No games available" if @games.empty?
+
+    @games.each do |game|
+      puts "Author: #{game.author&.first_name} Published in: #{game.publish_date}"
+    end
+  end
+
+  def list_authors
+    @authors.each do |game|
+      puts "#{author.first_name} #{author.last_name}"
+    end
+  end
+
+  def add_game
+    puts 'Is it a multiplayer game? [Y/N]'
+    user_input = gets.chomp.downcase
+    multiplayer = user_input == 'y' ? true : false
+
+    puts 'When was it last played (YYYY-MM-DD): '
+    last_played_at = gets.chomp
+
+    puts 'When was it published (YYYY-MM-DD): '
+    publish_date = gets.chomp
+
+    @games << Game.new(multiplayer, last_played_at, publish_date)
+     
+    puts "The game with ID #{games.last.id} was successfully created"
+  end
+
+end
+
+private
 
   def find_or_create_genre(genre_name)
     genre = @genres.find { |g| g.name == genre_name }
@@ -68,4 +103,3 @@ class App
 
     genre
   end
-end

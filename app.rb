@@ -4,9 +4,10 @@ require_relative 'classes/item/music_album.rb'
 require_relative 'classes/genre.rb'
 require_relative 'classes/game'
 require_relative 'classes/item/author'
+require_relative 'modules/album_data.rb'
 
 class App
-  
+include AlbumData
   attr_reader :books, :music_albums, :games
 
   def initialize

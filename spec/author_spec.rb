@@ -1,4 +1,4 @@
-require_relative '../author'
+require_relative '../classes/item/author.rb'
 require_relative '../classes/item/item.rb'
 
 describe Author do

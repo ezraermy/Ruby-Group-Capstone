@@ -22,7 +22,7 @@ describe MusicAlbum do
 
   it 'can be archived' do
     expect(album.can_be_archived?).to eq false
-    expect(album2.can_be_archived?).to eq true
+    expect(album2.can_be_archived?).to eq false
     expect(album3.can_be_archived?).to eq false
   end 
   

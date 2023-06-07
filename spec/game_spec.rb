@@ -1,4 +1,4 @@
-require_relative '../game'
+require_relative '../classes/game.rb'
 require 'date'
 
 describe Game do

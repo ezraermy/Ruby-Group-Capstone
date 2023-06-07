@@ -1,4 +1,4 @@
-require_relative 'modules/menu'
+require_relative 'menu'
 require_relative 'app'
 require_relative 'modules/album_data'
 

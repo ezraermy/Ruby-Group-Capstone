@@ -1,6 +1,10 @@
 require 'json'
+require_relative 'classes/game'
+require_relative 'classes/item/author'
 
 class Loader
+    attr_reader :games, :authors
+    
     def initialize
         load_data
     end

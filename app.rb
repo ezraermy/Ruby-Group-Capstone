@@ -91,6 +91,46 @@ class App
 
 end
 
+
+def save_game_author_data
+  games_json = @games.map do |game|
+    {
+      multiplayer: game.multiplayer,
+      last_played_at: game.last_played_at,
+      publish_date: game.publish_date,
+      archived: game.archived,
+      author: "#{game.author.first_name} #{game.author.last_name}",
+      type: 'Game'
+    }
+  end
+
+  authors_json = @authors.map do |author|
+    {
+      first_name: author.first_name,
+      last_name: author.last_name,
+      type: 'Author'
+    }
+  end
+
+  File.write('data/games.json', JSON.generate(games_json))
+  File.write('data/authors.json', JSON.generate(authors_json))
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 private
 
   def find_or_create_genre(genre_name)

@@ -10,6 +10,7 @@ def main
 
   # app.load_data
   app.load_data
+  app.load
 
   loop do
     break if menu.display_menu_options == 4
@@ -17,6 +18,7 @@ def main
 
   # app.save_data
   app.save_data
+  app.save
 
   puts 'Exiting the app, goodbye!'
   gets

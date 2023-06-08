@@ -1,3 +1,4 @@
+require 'json'
 require_relative 'classes/item/item'
 require_relative 'classes/item/music_album'
 require_relative 'classes/genre'
@@ -5,19 +6,22 @@ require_relative 'classes/label'
 require_relative 'classes/item/book'
 require_relative 'modules/book_module'
 require_relative 'modules/label_module'
+require_relative 'modules/album_data'
 require 'date'
 
 class App
+  include AlbumData
   include BookModule
   include LabelModule
 
   attr_reader :books, :music_albums, :games
 
-  def initialize
+  def initialize(games, authors)
     @books = []
     @music_albums = []
-    @games = []
+    @games = games
     @genres = []
+    @authors = authors
     @labels = []
   end
 
@@ -61,6 +65,63 @@ class App
     genre.add_item(music_album)
 
     @music_albums << music_album
+    puts 'Music album added successfully!'
+  end
+
+  def list_games
+    puts 'No games available' if @games.empty?
+
+    @games.each do |game|
+      puts "Author: #{game.author&.first_name} Published in: #{game.publish_date}"
+    end
+  end
+
+  def list_authors
+    puts 'No authors' if @authors.empty?
+
+    @authors.each_with_index do |author, index|
+      puts "#{index + 1}. #{author.first_name} #{author.last_name}"
+    end
+  end
+
+  def add_game
+    puts 'Is it a multiplayer game? [Y/N]'
+    user_input = gets.chomp.downcase
+    multiplayer = user_input == 'y'
+
+    puts 'When was it last played (YYYY-MM-DD): '
+    last_played_at = gets.chomp
+
+    puts 'When was it published (YYYY-MM-DD): '
+    publish_date = gets.chomp
+
+    @games << Game.new(multiplayer, last_played_at, publish_date)
+
+    puts "The game with ID #{@games.last.id} was successfully created"
+  end
+
+  def save_game_author_data
+    games_json = @games.map do |game|
+      {
+        multiplayer: game.multiplayer,
+        last_played_at: game.last_played_at,
+        publish_date: game.publish_date,
+        archived: game.archived,
+        author: "#{game.author&.first_name} #{game.author&.last_name}",
+        type: 'Game'
+      }
+    end
+
+    authors_json = @authors.map do |author|
+      {
+        first_name: author.first_name,
+        last_name: author.last_name,
+        type: 'Author'
+      }
+    end
+
+    File.write('data/games.json', JSON.generate(games_json))
+    File.write('data/authors.json', JSON.generate(authors_json))
     puts 'Music album added successfully!'
   end
 

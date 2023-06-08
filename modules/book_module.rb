@@ -53,7 +53,7 @@ module BookModule
     if @books.length >= 1
       @books.each_with_index do |book, i|
         puts "#{i + 1} - Title: #{book.label.title}" \
-             ", Publisher: #{book.publisher}, Publish date: #{book.publish_date}"\
+             ", Publisher: #{book.publisher}, Publish date: #{book.publish_date}" \
              ", Cover state: #{book.cover_state}"
         # ", Author: #{book.author.first_name} #{book.author.last_name}, " \
         # ", Genre: #{book.genre}, " \

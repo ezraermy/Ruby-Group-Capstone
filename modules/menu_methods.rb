@@ -17,6 +17,8 @@ module MenuMethods
     music_menu
   end
 
+  #---------------------------
+
   def list_of_games
     @app.list_games
     gets
@@ -34,6 +36,8 @@ module MenuMethods
     gets
     games_menu
   end
+
+  #---------------------------
 
   def list_of_books
     clear_screen

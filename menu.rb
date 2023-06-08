@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 class Menu
   def initialize(app)
     @app = app
@@ -27,7 +26,7 @@ class Menu
     3 => :main_menu
   }.freeze
 
-#---------------------------
+  #---------------------------
   def list_of_music_albums
     @app.list_music_albums
     gets
@@ -45,28 +44,28 @@ class Menu
     gets
     music_menu
   end
-#---------------------------
+  #---------------------------
 
-#-------------------------------------------------------
-# Games SECTION
-def list_of_games
-  @app.list_games
-  gets
-  games_menu
-end
+  #-------------------------------------------------------
+  # Games SECTION
+  def list_of_games
+    @app.list_games
+    gets
+    games_menu
+  end
 
-def list_of_authors
-  @app.list_authors
-  gets
-  games_menu
-end
+  def list_of_authors
+    @app.list_authors
+    gets
+    games_menu
+  end
 
-def add_game
-  @app.add_game
-  gets
-  games_menu
-end
-#-----------------------------------------------------------------------
+  def add_game
+    @app.add_game
+    gets
+    games_menu
+  end
+  #-----------------------------------------------------------------------
 
   def display_menu_options
     clear_screen
@@ -86,13 +85,14 @@ end
       clear_screen
       puts 'Invalid choice, please try again.'
       gets
-      if options == MAIN_OPTIONS
+      case options
+      when MAIN_OPTIONS
         100
-      elsif options == BOOKS_OPTIONS
-       books_menu
-      elsif options == MUSIC_OPTIONS
+      when BOOKS_OPTIONS
+        books_menu
+      when MUSIC_OPTIONS
         music_menu
-      elsif options == GAMES_OPTIONS
+      when GAMES_OPTIONS
         games_menu
       end
     end

@@ -3,34 +3,34 @@ require_relative 'classes/game'
 require_relative 'classes/item/author'
 
 class Loader
-    attr_reader :games, :authors
-    
-    def initialize
-        load_data
-    end
+  attr_reader :games, :authors
 
-    def load_data
-        @games = load_games
-        @authors = load_authors
-    end
+  def initialize
+    load_data
+  end
 
-    def load_games
-        return [] unless File.exist?('data/games.json')
+  def load_data
+    @games = load_games
+    @authors = load_authors
+  end
 
-        games_json = File.read('data/games.json')
-        return [] if games_json.empty?
+  def load_games
+    return [] unless File.exist?('data/games.json')
 
-        games_data = JSON.parse(games_json)
-        games_data.map {|game|  Game.new(game['multiplayer'], game['last_played_at'], game['publish_date'])}
-    end
+    games_json = File.read('data/games.json')
+    return [] if games_json.empty?
 
-    def load_authors
-        return [] unless File.exist?('data/authors.json')
+    games_data = JSON.parse(games_json)
+    games_data.map { |game| Game.new(game['multiplayer'], game['last_played_at'], game['publish_date']) }
+  end
 
-        authors_json = File.read('data/authors.json')
-        return [] if authors_json.empty?
+  def load_authors
+    return [] unless File.exist?('data/authors.json')
 
-        authors_data = JSON.parse(authors_json)
-        authors_data.map {|author| Author.new(author['first_name'], author['last_name'])}
-    end
+    authors_json = File.read('data/authors.json')
+    return [] if authors_json.empty?
+
+    authors_data = JSON.parse(authors_json)
+    authors_data.map { |author| Author.new(author['first_name'], author['last_name']) }
+  end
 end

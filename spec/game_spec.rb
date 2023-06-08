@@ -1,11 +1,11 @@
-require_relative '../classes/game.rb'
+require_relative '../classes/game'
 require 'date'
 
 describe Game do
   let(:multiplayer) { true }
   let(:last_played_at) { Date.parse('2020-11-12') }
-  let(:publish_date) {Date.parse('2010-02-11') }
-  let(:publish_date1) {Date.parse('2020-02-11') }
+  let(:publish_date) { Date.parse('2010-02-11') }
+  let(:publish_date1) { Date.parse('2020-02-11') }
   let(:game) { Game.new(multiplayer, last_played_at, publish_date) }
   let(:game1) { Game.new(multiplayer, last_played_at, publish_date1) }
 
@@ -23,7 +23,7 @@ describe Game do
     end
 
     it 'check if the method returns false' do
-        expect(game1.can_be_archived?).to be_falsy
+      expect(game1.can_be_archived?).to be_falsy
     end
   end
 end

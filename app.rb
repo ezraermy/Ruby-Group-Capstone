@@ -7,12 +7,16 @@ require_relative 'classes/item/book'
 require_relative 'modules/book_module'
 require_relative 'modules/label_module'
 require_relative 'modules/album_data'
+require_relative 'modules/label_storage'
+require_relative 'modules/book_storage'
 require 'date'
 
 class App
   include AlbumData
   include BookModule
   include LabelModule
+  include LabelStorage
+  include BookStorage
 
   attr_reader :books, :music_albums, :games
 
@@ -123,6 +127,16 @@ class App
     File.write('data/games.json', JSON.generate(games_json))
     File.write('data/authors.json', JSON.generate(authors_json))
     puts 'Music album added successfully!'
+  end
+
+  def save
+    save_labels
+    save_books
+  end
+
+  def load
+    load_labels
+    load_books
   end
 
   private

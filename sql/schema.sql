@@ -1,3 +1,24 @@
+CREATE TABLE items (
+  id VARCHAR(36) PRIMARY KEY,
+  genre VARCHAR(255),
+  author VARCHAR(255),
+  label VARCHAR(255),
+  publish_date DATE,
+  archived BOOLEAN
+);
+
+CREATE TABLE music_albums (
+  id VARCHAR(36) PRIMARY KEY,
+  item_id VARCHAR(36) UNIQUE,
+  on_spotify BOOLEAN,
+  FOREIGN KEY (item_id) REFERENCES items(id)
+);
+
+CREATE TABLE genres (
+  id VARCHAR(36) PRIMARY KEY,
+  name VARCHAR(255)
+);
+
 CREATE TABLE games (
     id INT GENERATED ALWAYS AS IDENTITY,
     muliplayer boolean,

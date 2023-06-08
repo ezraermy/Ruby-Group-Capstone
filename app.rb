@@ -101,15 +101,19 @@ class App
     puts 'When was it published (YYYY-MM-DD): '
     publish_date = gets.chomp
 
-    puts 'Who is the author of this game: '
+    game = Game.new(multiplayer, last_played_at, publish_date)
+
+    puts 'Who is the creator of this game: '
     puts 'First Name: '
     first_name = gets.chomp
     puts 'Last Name: '
     last_name = gets.chomp
 
-    @authors << Author.new(first_name, last_name)
+    author = Author.new(first_name, last_name)
+    author.add_item(game)
 
-    @games << Game.new(multiplayer, last_played_at, publish_date)
+    @authors << author
+    @games << game
 
     puts "The game with ID #{@games.last.id} was successfully created"
   end

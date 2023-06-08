@@ -28,6 +28,10 @@
 
 **Ruby-Capstone-Project** This project creates a console application that will help keep store books, music albums, movies, and games. in JSON files.
 
+### Video Walkthrough
+
+[link](https://drive.google.com/file/d/11p0B8xx2TJYVwT8FtGfIfEtXA0vUf86c/view?usp=drive_link)
+
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
@@ -101,9 +105,8 @@ ruby main.rb
 
 👤 **Juan Zorrilla**
 
-- GitHub: [@getssh](https://github.com/getssh)
-- Twitter: [@GetayawkalT](https://twitter.com/GetayawkalT)
-- LinkedIn: [@getayawkal-tamrat](https://www.linkedin.com/in/getayawkal-tamrat/)
+- GitHub: [@Swazstein](https://github.com/Swarzstein)
+- LinkedIn: [@juan-a-zorilla](https://www.linkedin.com/in/juan-a-zorrilla/)
 
 👤 **Ezra Yehuwalashet**
 
@@ -113,9 +116,8 @@ ruby main.rb
 
 👤 **Muhammad Davlatov**
 
-- GitHub: [@getssh](https://github.com/getssh)
-- Twitter: [@GetayawkalT](https://twitter.com/GetayawkalT)
-- LinkedIn: [@getayawkal-tamrat](https://www.linkedin.com/in/getayawkal-tamrat/)
+- GitHub: [@Muhammad0602](https://github.com/Muhammad0602)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/muhammad-davlatov-6a8536254/)
 
 <p align="right"><a href="#readme-top">👆</a></p>
 

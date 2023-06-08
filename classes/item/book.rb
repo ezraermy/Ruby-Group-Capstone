@@ -16,8 +16,8 @@ class Book < Item
   end
 
   public
-  
-  def to_json(*_args)
+
+  def to_json(*args)
     {
       JSON.create_id => self.class.name,
       'id' => @id,
@@ -28,6 +28,6 @@ class Book < Item
       'archived' => @archived,
       'publisher' => @publisher,
       'cover_state' => @cover_state
-    }.to_json(*_args)
+    }.to_json(*args)
   end
 end

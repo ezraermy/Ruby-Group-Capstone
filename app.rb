@@ -2,12 +2,18 @@ require 'json'
 require_relative 'classes/item/item'
 require_relative 'classes/item/music_album'
 require_relative 'classes/genre'
-require_relative 'classes/game'
-require_relative 'classes/item/author'
+require_relative 'classes/label'
+require_relative 'classes/item/book'
+require_relative 'modules/book_module'
+require_relative 'modules/label_module'
 require_relative 'modules/album_data'
+require 'date'
 
 class App
   include AlbumData
+  include BookModule
+  include LabelModule
+
   attr_reader :books, :music_albums, :games
 
   def initialize(games, authors)
@@ -16,6 +22,7 @@ class App
     @games = games
     @genres = []
     @authors = authors
+    @labels = []
   end
 
   def list_music_albums
@@ -115,6 +122,7 @@ class App
 
     File.write('data/games.json', JSON.generate(games_json))
     File.write('data/authors.json', JSON.generate(authors_json))
+    puts 'Music album added successfully!'
   end
 
   private

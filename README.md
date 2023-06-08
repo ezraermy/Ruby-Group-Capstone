@@ -40,6 +40,7 @@
 </details>
 
 ### Key Features <a name="key-features"><a>
+
 - [list_books]
 - [list_music_albums]
 - [list_games]
@@ -87,6 +88,7 @@ To run unit tests, run the following command:
 ```
 
 ### Run console
+
 ```bash
 ruby main.rb
 ```
@@ -102,7 +104,6 @@ ruby main.rb
 - GitHub: [@getssh](https://github.com/getssh)
 - Twitter: [@GetayawkalT](https://twitter.com/GetayawkalT)
 - LinkedIn: [@getayawkal-tamrat](https://www.linkedin.com/in/getayawkal-tamrat/)
-
 
 👤 **Ezra Yehuwalashet**
 

@@ -1,4 +1,7 @@
+require_relative 'modules/menu_methods'
+
 class Menu
+  include MenuMethods
   def initialize(app)
     @app = app
   end
@@ -25,47 +28,6 @@ class Menu
     2 => :add_game,
     3 => :main_menu
   }.freeze
-
-  #---------------------------
-  def list_of_music_albums
-    @app.list_music_albums
-    gets
-    music_menu
-  end
-
-  def list_of_genres
-    @app.list_genres
-    gets
-    music_menu
-  end
-
-  def add_music_album
-    @app.add_music_album
-    gets
-    music_menu
-  end
-  #---------------------------
-
-  #-------------------------------------------------------
-  # Games SECTION
-  def list_of_games
-    @app.list_games
-    gets
-    games_menu
-  end
-
-  def list_of_authors
-    @app.list_authors
-    gets
-    games_menu
-  end
-
-  def add_game
-    @app.add_game
-    gets
-    games_menu
-  end
-  #-----------------------------------------------------------------------
 
   def display_menu_options
     clear_screen

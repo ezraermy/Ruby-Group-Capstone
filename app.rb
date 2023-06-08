@@ -35,7 +35,7 @@ class App
     else
       puts 'List of Music Albums:'
       @music_albums.each_with_index do |album, index|
-        puts "#{index + 1}. #{album.label}"
+        puts "#{index + 1}. Label: #{album.label}, Published_date: (#{album.publish_date})"
       end
     end
   end
@@ -46,7 +46,7 @@ class App
     else
       puts 'List of Genres:'
       @genres.each_with_index do |genre, index|
-        puts "#{index + 1}. #{genre.name}"
+        puts "#{index + 1}. Genre: #{genre.name}"
       end
     end
   end

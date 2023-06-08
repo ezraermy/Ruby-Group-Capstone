@@ -26,8 +26,9 @@ class Menu
   }.freeze
   GAMES_OPTIONS = {
     1 => :list_of_games,
-    2 => :add_game,
-    3 => :main_menu
+    2 => :list_of_authors,
+    3 => :add_game,
+    4 => :main_menu
   }.freeze
 
   def display_menu_options
@@ -109,8 +110,9 @@ class Menu
     puts 'Games Menu'
     puts 'Please select an option:'
     puts '1: List all games'
-    puts '2: Add a game'
-    puts '3: Main Menu'
+    puts '2: List all authors'
+    puts '3: Add a game'
+    puts '4: Main Menu'
     handle_choice(GAMES_OPTIONS, gets.chomp.to_i)
   end
 end

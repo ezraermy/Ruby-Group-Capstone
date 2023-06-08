@@ -71,14 +71,16 @@ class App
   def list_games
     puts 'No games available' if @games.empty?
 
+    puts 'Our Games: '
     @games.each do |game|
-      puts "Author: #{game.author&.first_name} Published in: #{game.publish_date}"
+      puts "Multiplayer: #{game.multiplayer}; Published in: #{game.publish_date}"
     end
   end
 
   def list_authors
     puts 'No authors' if @authors.empty?
 
+    puts 'Right now these Authors are availabe: '
     @authors.each_with_index do |author, index|
       puts "#{index + 1}. #{author.first_name} #{author.last_name}"
     end
@@ -95,6 +97,14 @@ class App
     puts 'When was it published (YYYY-MM-DD): '
     publish_date = gets.chomp
 
+    puts 'Who is the author of this game: '
+    puts 'First Name: '
+    first_name = gets.chomp
+    puts 'Last Name: '
+    last_name = gets.chomp
+
+    @authors << Author.new(first_name, last_name)
+
     @games << Game.new(multiplayer, last_played_at, publish_date)
 
     puts "The game with ID #{@games.last.id} was successfully created"
@@ -103,20 +113,19 @@ class App
   def save_game_author_data
     games_json = @games.map do |game|
       {
+        id: game.id,
         multiplayer: game.multiplayer,
         last_played_at: game.last_played_at,
         publish_date: game.publish_date,
         archived: game.archived,
-        author: "#{game.author&.first_name} #{game.author&.last_name}",
-        type: 'Game'
+        author: "#{game.author&.first_name} #{game.author&.last_name}"
       }
     end
 
     authors_json = @authors.map do |author|
       {
         first_name: author.first_name,
-        last_name: author.last_name,
-        type: 'Author'
+        last_name: author.last_name
       }
     end
 

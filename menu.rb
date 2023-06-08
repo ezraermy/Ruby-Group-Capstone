@@ -1,4 +1,7 @@
+require_relative 'modules/menu_methods'
+
 class Menu
+  include MenuMethods
   def initialize(app)
     @app = app
   end
@@ -11,8 +14,9 @@ class Menu
   }.freeze
   BOOKS_OPTIONS = {
     1 => :list_of_books,
-    2 => :add_book,
-    3 => :main_menu
+    2 => :list_of_labels,
+    3 => :add_book,
+    4 => :main_menu
   }.freeze
   MUSIC_OPTIONS = {
     1 => :list_of_music_albums,
@@ -25,47 +29,6 @@ class Menu
     2 => :add_game,
     3 => :main_menu
   }.freeze
-
-  #---------------------------
-  def list_of_music_albums
-    @app.list_music_albums
-    gets
-    music_menu
-  end
-
-  def list_of_genres
-    @app.list_genres
-    gets
-    music_menu
-  end
-
-  def add_music_album
-    @app.add_music_album
-    gets
-    music_menu
-  end
-  #---------------------------
-
-  #-------------------------------------------------------
-  # Games SECTION
-  def list_of_games
-    @app.list_games
-    gets
-    games_menu
-  end
-
-  def list_of_authors
-    @app.list_authors
-    gets
-    games_menu
-  end
-
-  def add_game
-    @app.add_game
-    gets
-    games_menu
-  end
-  #-----------------------------------------------------------------------
 
   def display_menu_options
     clear_screen
@@ -124,8 +87,9 @@ class Menu
     puts 'Books Menu'
     puts 'Please select an option:'
     puts '1: List all books'
-    puts '2: Add a book'
-    puts '3: Main Menu'
+    puts '2: List all labels'
+    puts '3: Add a book'
+    puts '4: Main Menu'
     handle_choice(BOOKS_OPTIONS, gets.chomp.to_i)
   end
 
@@ -148,17 +112,5 @@ class Menu
     puts '2: Add a game'
     puts '3: Main Menu'
     handle_choice(GAMES_OPTIONS, gets.chomp.to_i)
-  end
-
-  def books_list
-    clear_screen
-  end
-
-  def music_list
-    clear_screen
-  end
-
-  def games_list
-    clear_screen
   end
 end

@@ -69,8 +69,10 @@ class App
   end
 
   def list_authors
-    @authors.each do |author|
-      puts "#{author.first_name} #{author.last_name}"
+    puts "No authors" if @authors.empty?
+    
+    @authors.each_with_index do |author, index|
+      puts "#{index + 1}. #{author.first_name} #{author.last_name}"
     end
   end
 

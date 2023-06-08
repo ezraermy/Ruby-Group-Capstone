@@ -104,6 +104,7 @@ end
   end
 
   def exit_app
+    @app.save_game_author_data
     clear_screen
     0
   end

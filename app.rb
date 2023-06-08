@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'json'
 require_relative 'classes/item/item.rb'
 require_relative 'classes/item/music_album.rb'
 require_relative 'classes/genre.rb'
@@ -8,12 +9,12 @@ require_relative 'classes/item/author'
 class App
   attr_reader :books, :music_albums, :games
 
-  def initialize
+  def initialize(games, authors)
     @books = []
     @music_albums = []
-    @games = []
+    @games = games
     @genres = []
-    @authors = []
+    @authors = authors
   end
 
   def list_music_albums
@@ -68,8 +69,10 @@ class App
   end
 
   def list_authors
-    @authors.each do |game|
-      puts "#{author.first_name} #{author.last_name}"
+    puts "No authors" if @authors.empty?
+    
+    @authors.each_with_index do |author, index|
+      puts "#{index + 1}. #{author.first_name} #{author.last_name}"
     end
   end
 
@@ -86,12 +89,34 @@ class App
 
     @games << Game.new(multiplayer, last_played_at, publish_date)
      
-    puts "The game with ID #{games.last.id} was successfully created"
+    puts "The game with ID #{@games.last.id} was successfully created"
   end
 
-end
+  def save_game_author_data
+    games_json = @games.map do |game|
+      {
+        multiplayer: game.multiplayer,
+        last_played_at: game.last_played_at,
+        publish_date: game.publish_date,
+        archived: game.archived,
+        author: "#{game.author&.first_name} #{game.author&.last_name}",
+        type: 'Game'
+      }
+    end
 
-private
+    authors_json = @authors.map do |author|
+      {
+        first_name: author.first_name,
+        last_name: author.last_name,
+        type: 'Author'
+      }
+    end
+
+    File.write('data/games.json', JSON.generate(games_json))
+    File.write('data/authors.json', JSON.generate(authors_json))
+  end
+
+  private
 
   def find_or_create_genre(genre_name)
     genre = @genres.find { |g| g.name == genre_name }
@@ -103,3 +128,4 @@ private
 
     genre
   end
+end

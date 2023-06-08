@@ -2,9 +2,11 @@
 
 require_relative 'modules/menu'
 require_relative 'app'
+require_relative 'loader'
 
 def main
-  app = App.new
+  loader = Loader.new
+  app = App.new(loader.games, loader.authors)
   menu = Menu.new(app)
 
   # app.load_data
